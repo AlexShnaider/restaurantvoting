@@ -13,14 +13,14 @@ import java.time.LocalTime;
 
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
-        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId ORDER BY m.id"),
+        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.restaurant.id=:restaurantId"),
         @NamedQuery(name = Meal.GET_BETWEEN, query = "SELECT m FROM Meal m " +
-                "WHERE m.user.id=:userId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
+                "WHERE m.restaurant.id=:restaurantId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
 })
 @Entity
-@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "meals_unique_user_datetime_idx")})
-public class Meal extends AbstractBaseEntity {
+@Table(name = "meals"/*, uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "meals_unique_user_datetime_idx")}*/)
+public class Meal extends AbstractNamedEntity {
     public static final String ALL_SORTED = "Meal.getAll";
     public static final String DELETE = "Meal.delete";
     public static final String GET_BETWEEN = "Meal.getBetween";
@@ -44,12 +44,12 @@ public class Meal extends AbstractBaseEntity {
     public Meal() {
     }
 
-    public Meal(LocalDateTime dateTime, int price) {
-        this(null, dateTime, price);
+    public Meal(LocalDateTime dateTime, String name, int price) {
+        this(null, dateTime, name, price);
     }
 
-    public Meal(Integer id, LocalDateTime dateTime, int price) {
-        super(id);
+    public Meal(Integer id, LocalDateTime dateTime, String name, int price) {
+        super(id, name);
         this.dateTime = dateTime;
         this.price = price;
     }
@@ -91,9 +91,10 @@ public class Meal extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Meal{" +
-                "id=" + id +
-                ", dateTime=" + dateTime +
+                "dateTime=" + dateTime +
                 ", price=" + price +
+                ", name='" + name + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

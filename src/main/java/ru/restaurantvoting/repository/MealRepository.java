@@ -1,6 +1,7 @@
 package ru.restaurantvoting.repository;
 
 import ru.restaurantvoting.model.Meal;
+
 import java.util.List;
 
 public interface MealRepository {

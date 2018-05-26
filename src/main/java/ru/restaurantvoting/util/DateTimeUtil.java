@@ -30,7 +30,7 @@ public class DateTimeUtil {
         return StringUtils.isEmpty(str) ? null : LocalTime.parse(str);
     }
 
-    public static LocalDateTime getCurrentDateTime(){
+    public static LocalDateTime getCurrentDateTime() {
         return LocalDateTime.now();
     }
 }

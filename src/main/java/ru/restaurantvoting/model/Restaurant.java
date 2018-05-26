@@ -6,12 +6,12 @@ import java.util.List;
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
         @NamedQuery(name = Restaurant.ALL_SORTED, query = "SELECT r FROM Restaurant r ORDER BY r.name"),
-        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE m.id=:id")})
+        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id")})
 @Entity
 @Table(name = "restaurants")
-public class Restaurant extends AbstractBaseEntity {
-    public static final String ALL_SORTED = "Meal.getAll";
-    public static final String DELETE = "Meal.delete";
+public class Restaurant extends AbstractNamedEntity {
+    public static final String ALL_SORTED = "Restaurant.getAll";
+    public static final String DELETE = "Restaurant.delete";
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     List<Meal> meals;
@@ -25,15 +25,18 @@ public class Restaurant extends AbstractBaseEntity {
     }
 
     public Restaurant() {
-        this.id = null;
+        /*this.id = null;*/
     }
 
-    public Restaurant(Integer id) {
-        super(id);
+    public Restaurant(Integer id, String name) {
+        super(id, name);
     }
 
     @Override
     public String toString() {
-        return "Restaurant{id=" + id + '}';
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

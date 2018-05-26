@@ -23,5 +23,5 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     Restaurant save(Restaurant item);
 
     @Query("SELECT r FROM Restaurant r")
-    List<Meal> getAll();
+    List<Restaurant> getAll();
 }
