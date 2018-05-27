@@ -1,5 +1,6 @@
-package ru.restaurantvoting.repository;
+package ru.restaurantvoting.repository.crud;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,12 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
 
     @Query("SELECT r FROM Restaurant r")
     List<Restaurant> getAll();
+
+    //https://stackoverflow.com/a/46013654/548473
+    @EntityGraph(attributePaths = {"meals"}, type = EntityGraph.EntityGraphType.LOAD)
+    @Query("SELECT r FROM Restaurant r WHERE r.id=?1")
+    Restaurant getWithMeals(int id);
+
+    /*@Query("SELECT r FROM Restaurant r JOIN FETCH m.restaurant WHERE m.id = ?1 and m.restaurant.id = ?2")
+    Restaurant getWithMealsOfDate(int id);*/
 }

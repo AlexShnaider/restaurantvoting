@@ -16,7 +16,6 @@ public interface MealRepository {
 
     List<Meal> getAll(int restaurantId);
 
-    default Meal getWithRestaurant(int id, int restaurantId) {
-        throw new UnsupportedOperationException();
-    }
+    // null if meal do not belong to restaurantId
+    Meal getWithRestaurant(int id, int restaurantId);
 }

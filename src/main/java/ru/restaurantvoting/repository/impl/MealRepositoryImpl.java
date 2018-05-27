@@ -1,9 +1,12 @@
-package ru.restaurantvoting.repository;
+package ru.restaurantvoting.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.restaurantvoting.model.Meal;
+import ru.restaurantvoting.repository.MealRepository;
+import ru.restaurantvoting.repository.crud.CrudMealRepository;
+import ru.restaurantvoting.repository.crud.CrudRestaurantRepository;
 
 import java.util.List;
 
@@ -34,6 +37,11 @@ public class MealRepositoryImpl implements MealRepository {
     @Override
     public Meal get(int id, int restaurantId) {
         return crudMealRepository.findById(id).filter(meal -> meal.getRestaurant().getId() == restaurantId).orElse(null);
+    }
+
+    @Override
+    public Meal getWithRestaurant(int id, int restaurantId) {
+        return crudMealRepository.getWithRestaurant(id, restaurantId);
     }
 
     @Override

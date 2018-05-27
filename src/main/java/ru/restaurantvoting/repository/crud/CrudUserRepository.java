@@ -1,4 +1,4 @@
-package ru.restaurantvoting.repository;
+package ru.restaurantvoting.repository.crud;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.EntityGraph;

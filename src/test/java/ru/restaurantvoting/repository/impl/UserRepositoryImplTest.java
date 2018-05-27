@@ -1,4 +1,4 @@
-package ru.restaurantvoting.repository;
+package ru.restaurantvoting.repository.impl;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.restaurantvoting.model.User;
+import ru.restaurantvoting.repository.UserRepository;
 
 import java.util.Arrays;
 
@@ -41,20 +42,20 @@ public class UserRepositoryImplTest {
     public void save() {
         User createdUser = userRepository.save(USER_NEW);
         assertMatch(USER_NEW, createdUser);
-        assertMatch(Arrays.asList(ADMIN, USER0, USER1, USER2, USER_NEW), userRepository.getAll());
+        assertMatch(userRepository.getAll(), ADMIN, USER0, USER1, USER2, USER_NEW);
     }
 
     @Test
     public void delete() {
         assertTrue(userRepository.delete(USER0_ID));
-        assertMatch(Arrays.asList(ADMIN, USER1, USER2), userRepository.getAll());
+        assertMatch(userRepository.getAll(), ADMIN, USER1, USER2);
     }
 
     @Test
     public void deleteNotExisted() {
-        assertMatch(Arrays.asList(ADMIN, USER0, USER1, USER2), userRepository.getAll());
+        assertMatch(userRepository.getAll(), ADMIN, USER0, USER1, USER2);
         assertFalse(userRepository.delete(10));
-        assertMatch(Arrays.asList(ADMIN, USER0, USER1, USER2), userRepository.getAll());
+        assertMatch(userRepository.getAll(), ADMIN, USER0, USER1, USER2);
     }
 
     @Test
@@ -81,6 +82,6 @@ public class UserRepositoryImplTest {
 
     @Test
     public void getAll() {
-        assertMatch(Arrays.asList(ADMIN, USER0, USER1, USER2), userRepository.getAll());
+        assertMatch(userRepository.getAll(), ADMIN, USER0, USER1, USER2);
     }
 }

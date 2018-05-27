@@ -1,9 +1,11 @@
-package ru.restaurantvoting.repository;
+package ru.restaurantvoting.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import ru.restaurantvoting.model.User;
+import ru.restaurantvoting.repository.UserRepository;
+import ru.restaurantvoting.repository.crud.CrudUserRepository;
 
 import java.util.List;
 
