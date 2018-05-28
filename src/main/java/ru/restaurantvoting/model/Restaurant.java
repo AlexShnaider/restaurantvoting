@@ -16,20 +16,23 @@ public class Restaurant extends AbstractNamedEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     List<Meal> meals;
 
+    public Restaurant() {
+    }
+
+    public Restaurant(String name) {
+        super(null, name);
+    }
+
+    public Restaurant(Integer id, String name) {
+        super(id, name);
+    }
+
     public List<Meal> getMeals() {
         return meals;
     }
 
     public void setMeals(List<Meal> meals) {
         this.meals = meals;
-    }
-
-    public Restaurant() {
-        /*this.id = null;*/
-    }
-
-    public Restaurant(Integer id, String name) {
-        super(id, name);
     }
 
     @Override

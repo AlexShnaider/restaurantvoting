@@ -16,5 +16,6 @@ public interface UserRepository {
     // null if not found
     User getByEmail(String email);
 
+    //sorted by name, email
     List<User> getAll();
 }

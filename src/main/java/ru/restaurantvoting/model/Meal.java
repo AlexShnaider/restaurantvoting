@@ -13,13 +13,13 @@ import java.time.LocalTime;
 
 @SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId ORDER BY m.id"),
+        @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId ORDER BY m.restaurant.id"),
         @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.restaurant.id=:restaurantId"),
         @NamedQuery(name = Meal.GET_BETWEEN, query = "SELECT m FROM Meal m " +
                 "WHERE m.restaurant.id=:restaurantId AND m.dateTime BETWEEN :startDate AND :endDate ORDER BY m.dateTime DESC"),
 })
 @Entity
-@Table(name = "meals"/*, uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "meals_unique_user_datetime_idx")}*/)
+@Table(name = "meals")
 public class Meal extends AbstractNamedEntity {
     public static final String ALL_SORTED = "Meal.getAll";
     public static final String DELETE = "Meal.delete";
@@ -38,14 +38,9 @@ public class Meal extends AbstractNamedEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    //@NotNull(groups = View.Persist.class)
     private Restaurant restaurant;
 
     public Meal() {
-    }
-
-    public Meal(LocalDateTime dateTime, String name, int price) {
-        this(null, dateTime, name, price);
     }
 
     public Meal(Integer id, LocalDateTime dateTime, String name, int price) {

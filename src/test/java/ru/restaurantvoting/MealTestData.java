@@ -20,8 +20,8 @@ public class MealTestData {
     //Restaurant1 id=100005
     public static final Meal MEAL4 = new Meal(MEAL1_ID + 3, of(2018, Month.MAY, 1, 8, 3), "business lunch", 500);
     //Restaurant2 id=100006
-    public static final Meal MEAL5 = new Meal(MEAL1_ID + 4, of(2018, Month.MAY, 1, 8, 4), "fish soup", 300);
-    public static final Meal MEAL6 = new Meal(MEAL1_ID + 5, of(2018, Month.MAY, 1, 8, 5), "pizza", 400);
+    public static final Meal MEAL5 = new Meal(MEAL1_ID + 4, of(2018, Month.MAY, 2, 8, 4), "fish soup", 300);
+    public static final Meal MEAL6 = new Meal(MEAL1_ID + 5, of(2018, Month.MAY, 2, 8, 5), "pizza", 400);
 
     public static final Meal NEW_MEAL = new Meal(null, of(2018, Month.MAY, 2, 10, 0), "new dish", 300);
 
