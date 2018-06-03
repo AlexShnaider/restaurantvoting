@@ -1,6 +1,7 @@
 package ru.restaurantvoting.model;
 
 import org.hibernate.Hibernate;
+import ru.restaurantvoting.HasId;
 
 import javax.persistence.*;
 

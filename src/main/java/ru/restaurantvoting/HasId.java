@@ -1,4 +1,4 @@
-package ru.restaurantvoting.model;
+package ru.restaurantvoting;
 
 public interface HasId {
     Integer getId();
