@@ -10,9 +10,6 @@
 
     <bean class="ru.restaurantvoting.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
-    <!--https://stackoverflow.com/a/44393203/548473-->
-    <!--<mvc:default-servlet-handler/>-->
-
     <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
     <mvc:annotation-driven conversion-service="conversionService">
@@ -34,7 +31,13 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
-    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService"/>
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
+        <property name="formatters">
+            <set>
+                <bean class="ru.restaurantvoting.web.converter.DateFormatter"/>
+            </set>
+        </property>
+    </bean>
 
     <context:component-scan base-package="ru.restaurantvoting.**.web"/>
 

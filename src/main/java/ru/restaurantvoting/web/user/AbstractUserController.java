@@ -3,10 +3,8 @@ package ru.restaurantvoting.web.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.restaurantvoting.model.User;
-import ru.restaurantvoting.service.UserService;
+import ru.restaurantvoting.service.user.UserService;
 import ru.restaurantvoting.to.UserTo;
 
 import java.util.List;
@@ -41,16 +39,16 @@ public abstract class AbstractUserController {
         service.delete(id);
     }
 
-    public void update(User user, int id) {
+    public User update(User user, int id) {
         log.info("update {} with id={}", user, id);
         assureIdConsistent(user, id);
-        service.update(user);
+        return service.update(user);
     }
 
-    public void update(UserTo userTo, int id) {
+    public UserTo update(UserTo userTo, int id) {
         log.info("update {} with id={}", userTo, id);
         assureIdConsistent(userTo, id);
-        service.update(userTo);
+        return service.update(userTo);
     }
 
     public User getByMail(String email) {

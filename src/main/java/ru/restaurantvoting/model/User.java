@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.*;
 
+import static ru.restaurantvoting.model.Role.ROLE_USER;
+
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
@@ -52,6 +54,11 @@ public class User extends AbstractNamedEntity {
 
     public User(User u) {
         this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRoles());
+    }
+
+    //needed for transforming VoteTo into Vote
+    public User(Integer id) {
+        this(id, "dummy", "dummy@gmail.com", "dummyPassword", EnumSet.of(ROLE_USER));
     }
 
     public User(Integer id, String name, String email, String password, Role role, Role... roles) {

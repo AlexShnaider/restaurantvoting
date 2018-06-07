@@ -4,7 +4,7 @@ import ru.restaurantvoting.model.Restaurant;
 
 import java.util.List;
 
-public interface RestaurantlRepository {
+public interface RestaurantRepository {
     Restaurant save(Restaurant restaurant);
 
     // false if not found

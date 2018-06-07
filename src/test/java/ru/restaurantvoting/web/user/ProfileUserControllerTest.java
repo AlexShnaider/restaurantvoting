@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.restaurantvoting.TestUtil;
 import ru.restaurantvoting.model.User;
 import ru.restaurantvoting.to.UserTo;
-import ru.restaurantvoting.util.UserUtil;
 import ru.restaurantvoting.util.exception.ErrorType;
 import ru.restaurantvoting.web.json.JsonUtil;
 
@@ -19,10 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.restaurantvoting.TestUtil.userHttpBasic;
 import static ru.restaurantvoting.UserTestData.*;
+import static ru.restaurantvoting.util.UserUtil.asTo;
+import static ru.restaurantvoting.util.UserUtil.updateFromTo;
 import static ru.restaurantvoting.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
-import static ru.restaurantvoting.web.user.ProfileRestController.REST_URL;
+import static ru.restaurantvoting.web.user.ProfileUserController.REST_URL;
 
-public class ProfileRestControllerTest extends AbstractControllerTest {
+public class ProfileUserControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGet() throws Exception {
@@ -51,15 +52,15 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        UserTo updatedTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword");
-
-        mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
+        UserTo updatedTo = asTo(new User(USER1));
+        updatedTo.setName("updatedName");
+        mockMvc.perform(put(REST_URL)
+                .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(USER1))
                 .content(JsonUtil.writeValue(updatedTo)))
-                .andDo(print())
                 .andExpect(status().isOk());
 
-        assertMatch(userService.getByEmail("newemail@ya.ru"), UserUtil.updateFromTo(new User(USER1), updatedTo));
+        assertMatch(userService.get(USER1_ID), updateFromTo(new User(USER1), updatedTo));
     }
 
     @Test
@@ -72,20 +73,6 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(errorType(ErrorType.VALIDATION_ERROR))
-                .andDo(print());
-    }
-
-    @Test
-    @Transactional(propagation = Propagation.NEVER)
-    public void testDuplicate() throws Exception {
-        UserTo updatedTo = new UserTo(null, "newName", "admin@gmail.com", "newPassword");
-
-        mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
-                .with(userHttpBasic(USER1))
-                .content(JsonUtil.writeValue(updatedTo)))
-                .andExpect(status().isConflict())
-                .andExpect(errorType(ErrorType.VALIDATION_ERROR))
-                .andExpect(jsonMessage("$.details", EXCEPTION_DUPLICATE_EMAIL))
                 .andDo(print());
     }
 }

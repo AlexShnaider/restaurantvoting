@@ -1,6 +1,7 @@
 package ru.restaurantvoting.model;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("JpaQlInspection")
@@ -19,12 +20,22 @@ public class Restaurant extends AbstractNamedEntity {
     public Restaurant() {
     }
 
-    public Restaurant(String name) {
-        super(null, name);
+    public Restaurant(Restaurant restaurant) {
+        this(restaurant.getId(), restaurant.getName(), restaurant.getMeals());
+    }
+
+    //needed for transforming VoteTo into Vote
+    public Restaurant(Integer id) {
+        this(id, "dummy", Collections.emptyList());
     }
 
     public Restaurant(Integer id, String name) {
+        this(id, name, null);
+    }
+
+    public Restaurant(Integer id, String name, List<Meal> meals) {
         super(id, name);
+        this.meals = meals;
     }
 
     public List<Meal> getMeals() {

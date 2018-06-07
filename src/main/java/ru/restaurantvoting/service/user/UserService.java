@@ -1,4 +1,4 @@
-package ru.restaurantvoting.service;
+package ru.restaurantvoting.service.user;
 
 import ru.restaurantvoting.model.User;
 import ru.restaurantvoting.to.UserTo;
@@ -16,11 +16,9 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    void update(User user);
+    User update(User user);
 
-    void update(UserTo user);
+    UserTo update(UserTo user);
 
     List<User> getAll();
-
-    //User getWithMeals(int id);
 }

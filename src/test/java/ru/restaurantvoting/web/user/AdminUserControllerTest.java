@@ -22,9 +22,9 @@ import static ru.restaurantvoting.TestUtil.userHttpBasic;
 import static ru.restaurantvoting.UserTestData.*;
 import static ru.restaurantvoting.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
 
-public class AdminRestControllerTest extends AbstractControllerTest {
+public class AdminUserControllerTest extends AbstractControllerTest {
 
-    private static final String REST_URL = AdminRestController.REST_URL + '/';
+    private static final String REST_URL = AdminUserController.REST_URL + '/';
 
     @Test
     public void testGet() throws Exception {

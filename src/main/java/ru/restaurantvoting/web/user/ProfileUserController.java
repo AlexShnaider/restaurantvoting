@@ -11,8 +11,8 @@ import ru.restaurantvoting.to.UserTo;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(ProfileRestController.REST_URL)
-public class ProfileRestController extends AbstractUserController {
+@RequestMapping(ProfileUserController.REST_URL)
+public class ProfileUserController extends AbstractUserController {
     static final String REST_URL = "/rest/profile";
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,12 +27,7 @@ public class ProfileRestController extends AbstractUserController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@Valid @RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        super.update(userTo, authorizedUser.getId());
-    }
-
-    @GetMapping(value = "/text")
-    public String testUTF() {
-        return "Русский текст";
+    public UserTo update(@Valid @RequestBody UserTo userTo, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
+        return super.update(userTo, authorizedUser.getId());
     }
 }

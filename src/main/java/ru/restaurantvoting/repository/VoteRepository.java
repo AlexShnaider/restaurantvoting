@@ -2,7 +2,7 @@ package ru.restaurantvoting.repository;
 
 import ru.restaurantvoting.model.Vote;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface VoteRepository {
@@ -21,11 +21,17 @@ public interface VoteRepository {
     List<Vote> getAll();
 
     //sorted by dateTime
-    List<Vote> getAllBetweenDates(LocalDateTime startDate, LocalDateTime endDate);
+    List<Vote> getAllBetweenDates(LocalDate startDate, LocalDate endDate);
 
     //sorted by dateTime
-    List<Vote> getByUserBetweenDates(LocalDateTime startDate, LocalDateTime endDate, int userId);
+    List<Vote> getByUser(int userId);
 
     //sorted by dateTime
-    List<Vote> getByRestaurantBetweenDates(LocalDateTime startDate, LocalDateTime endDate, int restaurantId);
+    List<Vote> getByRestaurant(int restaurantId);
+
+    //sorted by dateTime
+    List<Vote> getByUserBetweenDates(LocalDate startDate, LocalDate endDate, int userId);
+
+    //sorted by dateTime
+    List<Vote> getByRestaurantBetweenDates(LocalDate startDate, LocalDate endDate, int restaurantId);
 }

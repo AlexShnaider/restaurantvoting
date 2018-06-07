@@ -12,8 +12,8 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(AdminRestController.REST_URL)
-public class AdminRestController extends AbstractUserController {
+@RequestMapping(AdminUserController.REST_URL)
+public class AdminUserController extends AbstractUserController {
     static final public String REST_URL = "/rest/admin/users";
 
     @Override
@@ -47,8 +47,8 @@ public class AdminRestController extends AbstractUserController {
 
     @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@Validated @RequestBody User user, @PathVariable("id") int id) {
-        super.update(user, id);
+    public User update(@Validated @RequestBody User user, @PathVariable("id") int id) {
+        return super.update(user, id);
     }
 
     @Override

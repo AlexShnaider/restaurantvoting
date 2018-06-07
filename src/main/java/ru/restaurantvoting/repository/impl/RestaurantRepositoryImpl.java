@@ -4,16 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import ru.restaurantvoting.model.Restaurant;
-import ru.restaurantvoting.model.User;
-import ru.restaurantvoting.repository.RestaurantlRepository;
-import ru.restaurantvoting.repository.UserRepository;
+import ru.restaurantvoting.repository.RestaurantRepository;
 import ru.restaurantvoting.repository.crud.CrudRestaurantRepository;
-import ru.restaurantvoting.repository.crud.CrudUserRepository;
 
 import java.util.List;
 
 @Repository
-public class RestaurantRepositoryImpl implements RestaurantlRepository {
+public class RestaurantRepositoryImpl implements RestaurantRepository {
     private static final Sort SORT_NAME = new Sort(Sort.Direction.ASC, "name");
 
     @Autowired

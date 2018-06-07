@@ -35,7 +35,7 @@ public class ValidationUtil {
     }
 
     public static void assureIdConsistent(HasId bean, int id) {
-//      http://stackoverflow.com/a/32728226/548473
+    // http://stackoverflow.com/a/32728226/548473
         if (bean.isNew()) {
             bean.setId(id);
         } else if (bean.getId() != id) {

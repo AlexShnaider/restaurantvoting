@@ -1,4 +1,4 @@
-package ru.restaurantvoting.service;
+package ru.restaurantvoting.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -17,6 +17,7 @@ import ru.restaurantvoting.util.exception.NotFoundException;
 
 import java.util.List;
 
+import static ru.restaurantvoting.util.UserUtil.asTo;
 import static ru.restaurantvoting.util.UserUtil.prepareToSave;
 import static ru.restaurantvoting.util.UserUtil.updateFromTo;
 import static ru.restaurantvoting.util.ValidationUtil.checkNotFound;
@@ -67,19 +68,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @CacheEvict(value = "users", allEntries = true)
     @Override
-    public void update(User user) {
+    public User update(User user) {
         Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(repository.save(prepareToSave(user, passwordEncoder)), user.getId());
+        return checkNotFoundWithId(repository.save(prepareToSave(user, passwordEncoder)), user.getId());
     }
 
     @CacheEvict(value = "users", allEntries = true)
     @Transactional
     @Override
-    public void update(UserTo userTo) {
+    public UserTo update(UserTo userTo) {
         User user = updateFromTo(get(userTo.getId()), userTo);
-        repository.save(prepareToSave(user, passwordEncoder));
+        return asTo(repository.save(prepareToSave(user, passwordEncoder)));
     }
-
 
     @Override
     public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -89,9 +89,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return new AuthorizedUser(user);
     }
-
-    /*@Override
-    public User getWithMeals(int id) {
-        return checkNotFoundWithId(repository.getWithMeals(id), id);
-    }*/
 }

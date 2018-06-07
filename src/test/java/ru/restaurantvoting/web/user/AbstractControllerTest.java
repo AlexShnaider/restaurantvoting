@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import ru.restaurantvoting.repository.JpaUtil;
-import ru.restaurantvoting.service.UserService;
+import ru.restaurantvoting.service.user.UserService;
 import ru.restaurantvoting.util.exception.ErrorType;
 
 import javax.annotation.PostConstruct;
