@@ -9,6 +9,7 @@ import ru.restaurantvoting.TestUtil;
 import ru.restaurantvoting.model.Role;
 import ru.restaurantvoting.model.User;
 import ru.restaurantvoting.util.exception.ErrorType;
+import ru.restaurantvoting.web.AbstractControllerTest;
 import ru.restaurantvoting.web.json.JsonUtil;
 
 import java.util.Collections;

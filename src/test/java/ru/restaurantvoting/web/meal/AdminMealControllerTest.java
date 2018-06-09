@@ -8,7 +8,7 @@ import ru.restaurantvoting.model.Meal;
 import ru.restaurantvoting.service.meal.MealService;
 import ru.restaurantvoting.util.exception.ErrorType;
 import ru.restaurantvoting.web.json.JsonUtil;
-import ru.restaurantvoting.web.user.AbstractControllerTest;
+import ru.restaurantvoting.web.AbstractControllerTest;
 
 import java.time.LocalDateTime;
 
@@ -21,6 +21,7 @@ import static ru.restaurantvoting.RestaurantTestData.RESTAURANT1_ID;
 import static ru.restaurantvoting.TestUtil.*;
 import static ru.restaurantvoting.UserTestData.ADMIN;
 import static ru.restaurantvoting.UserTestData.USER1;
+import static ru.restaurantvoting.util.MealUtil.asTo;
 
 public class AdminMealControllerTest extends AbstractControllerTest {
 

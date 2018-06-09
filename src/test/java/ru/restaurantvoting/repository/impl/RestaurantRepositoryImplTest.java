@@ -15,9 +15,10 @@ public class RestaurantRepositoryImplTest extends BaseRepositoryImplTest{
     @Test
     public void save() {
         assertMatch(restaurantRepository.getAll(), RESTAURANT1, RESTAURANT2, RESTAURANT3);
-        Restaurant savedRestaurant = restaurantRepository.save(NEW_RESTAURANT);
-        assertMatch(savedRestaurant, NEW_RESTAURANT);
-        assertMatch(restaurantRepository.getAll(), NEW_RESTAURANT, RESTAURANT1, RESTAURANT2, RESTAURANT3);
+        Restaurant newRestaurant = new Restaurant(NEW_RESTAURANT);
+        Restaurant savedRestaurant = restaurantRepository.save(newRestaurant);
+        assertMatch(savedRestaurant, newRestaurant);
+        assertMatch(restaurantRepository.getAll(), newRestaurant, RESTAURANT1, RESTAURANT2, RESTAURANT3);
     }
 
     @Test

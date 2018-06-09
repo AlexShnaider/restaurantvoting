@@ -50,9 +50,13 @@ public class Vote extends AbstractBaseEntity{
     private User user;
 
     @Column(name = "user_id", insertable = false, updatable = false)
-    private int userId;
+    private Integer userId;
 
     public Vote() {
+    }
+
+    public Vote(Vote vote) {
+        this(vote.getId(), vote.getDate(),vote.user, vote.userId, vote.restaurant, vote.restaurantId);
     }
 
     public Vote(LocalDate date, Integer user, Integer restaurant) {

@@ -3,14 +3,11 @@ package ru.restaurantvoting.web.restaurant;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.web.servlet.ResultActions;
 import ru.restaurantvoting.model.Restaurant;
 import ru.restaurantvoting.service.restaurant.RestaurantService;
-import ru.restaurantvoting.util.exception.ErrorType;
 import ru.restaurantvoting.web.json.JsonUtil;
-import ru.restaurantvoting.web.user.AbstractControllerTest;
+import ru.restaurantvoting.web.AbstractControllerTest;
 
 import java.util.Arrays;
 
@@ -23,7 +20,6 @@ import static ru.restaurantvoting.MealTestData.MEAL2;
 import static ru.restaurantvoting.MealTestData.MEAL3;
 import static ru.restaurantvoting.RestaurantTestData.*;
 import static ru.restaurantvoting.TestUtil.*;
-import static ru.restaurantvoting.UserTestData.ADMIN;
 import static ru.restaurantvoting.UserTestData.USER1;
 
 public class ProfileRestaurantControllerTest extends AbstractControllerTest {

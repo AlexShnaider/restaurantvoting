@@ -24,9 +24,10 @@ public class UserRepositoryImplTest extends BaseRepositoryImplTest{
 
     @Test
     public void save() {
-        User createdUser = userRepository.save(USER_NEW);
-        assertMatch(USER_NEW, createdUser);
-        assertMatch(userRepository.getAll(), ADMIN, USER1, USER2, USER3, USER_NEW);
+        User newUser = new User(USER_NEW);
+        User createdUser = userRepository.save(newUser);
+        assertMatch(newUser, createdUser);
+        assertMatch(userRepository.getAll(), ADMIN, USER1, USER2, USER3, newUser);
     }
 
     @Test

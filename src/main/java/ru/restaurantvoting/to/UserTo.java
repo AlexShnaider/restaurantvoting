@@ -1,6 +1,5 @@
 package ru.restaurantvoting.to;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.validation.constraints.Email;
@@ -22,7 +21,6 @@ public class UserTo extends BaseTo implements Serializable {
     private String email;
 
     @Size(min = 5, max = 32, message = "length must between 5 and 32 characters")
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     public UserTo() {

@@ -2,12 +2,11 @@ package ru.restaurantvoting.web.user;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import ru.restaurantvoting.TestUtil;
 import ru.restaurantvoting.model.User;
 import ru.restaurantvoting.to.UserTo;
 import ru.restaurantvoting.util.exception.ErrorType;
+import ru.restaurantvoting.web.AbstractControllerTest;
 import ru.restaurantvoting.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -20,7 +19,6 @@ import static ru.restaurantvoting.TestUtil.userHttpBasic;
 import static ru.restaurantvoting.UserTestData.*;
 import static ru.restaurantvoting.util.UserUtil.asTo;
 import static ru.restaurantvoting.util.UserUtil.updateFromTo;
-import static ru.restaurantvoting.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
 import static ru.restaurantvoting.web.user.ProfileUserController.REST_URL;
 
 public class ProfileUserControllerTest extends AbstractControllerTest {

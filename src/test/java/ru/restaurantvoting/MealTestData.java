@@ -1,6 +1,7 @@
 package ru.restaurantvoting;
 
 import ru.restaurantvoting.model.Meal;
+import ru.restaurantvoting.to.MealTo;
 
 import java.time.Month;
 import java.util.Arrays;
@@ -26,6 +27,10 @@ public class MealTestData {
     public static final Meal NEW_MEAL = new Meal(null, of(2018, Month.MAY, 2, 10, 0), "new dish", 300);
 
     public static void assertMatch(Meal actual, Meal expected) {
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "restaurant");
+    }
+
+    public static void assertMatch(MealTo actual, MealTo expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "restaurant");
     }
 

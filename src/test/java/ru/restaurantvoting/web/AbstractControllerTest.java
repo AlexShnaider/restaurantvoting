@@ -1,4 +1,4 @@
-package ru.restaurantvoting.web.user;
+package ru.restaurantvoting.web;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import ru.restaurantvoting.repository.JpaUtil;
+import ru.restaurantvoting.util.JpaUtil;
 import ru.restaurantvoting.service.user.UserService;
 import ru.restaurantvoting.util.exception.ErrorType;
 

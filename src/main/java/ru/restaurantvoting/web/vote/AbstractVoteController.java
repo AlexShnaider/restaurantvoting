@@ -75,7 +75,7 @@ public abstract class AbstractVoteController {
     public VoteTo update(VoteTo voteTo, int id, int userId) {
         assureIdConsistent(voteTo, id);
         log.info("update vote {}", voteTo);
-        Vote vote = updateFromTo(service.get(id, userId), voteTo);
+        Vote vote = updateFromTo(new Vote(service.get(id, userId)), voteTo);
         return asTo(service.update(vote));
     }
 

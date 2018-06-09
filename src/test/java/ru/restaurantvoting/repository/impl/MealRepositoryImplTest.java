@@ -14,9 +14,10 @@ public class MealRepositoryImplTest extends BaseRepositoryImplTest {
     @Test
     public void save() {
         assertMatch(mealRepository.getAll(RESTAURANT2_ID), MEAL4);
-        Meal savedMeal = mealRepository.save(NEW_MEAL, RESTAURANT2_ID);
-        assertMatch(savedMeal, NEW_MEAL);
-        assertMatch(mealRepository.getAll(RESTAURANT2_ID), MEAL4, NEW_MEAL);
+        Meal newMeal = new Meal(NEW_MEAL);
+        Meal savedMeal = mealRepository.save(newMeal, RESTAURANT2_ID);
+        assertMatch(savedMeal, newMeal);
+        assertMatch(mealRepository.getAll(RESTAURANT2_ID), MEAL4, savedMeal);
     }
 
     @Test

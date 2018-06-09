@@ -1,4 +1,4 @@
-package ru.restaurantvoting.repository;
+package ru.restaurantvoting.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

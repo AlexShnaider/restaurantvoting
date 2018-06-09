@@ -17,9 +17,10 @@ public class VoteRepositoryImplTest extends BaseRepositoryImplTest{
     @Test
     public void save() {
         assertMatch(voteRepository.getAll(), VOTE1, VOTE2, VOTE3);
-        Vote vote = voteRepository.save(NEW_VOTE);
-        assertMatch(vote, NEW_VOTE);
-        assertMatch(voteRepository.getAll(), VOTE1, VOTE2, VOTE3, NEW_VOTE);
+        Vote newVote = new Vote(NEW_VOTE);
+        Vote vote = voteRepository.save(newVote);
+        assertMatch(vote, newVote);
+        assertMatch(voteRepository.getAll(), VOTE1, VOTE2, VOTE3, newVote);
     }
 
     @Test
